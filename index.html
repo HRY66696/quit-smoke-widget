@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#f7e8d5" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="css/style.css?v=5" />
+  <title>Smoke · 记账上</title>
+</head>
+<body class="style-melon-bear">
+  <div id="app">
+
+    <header class="topbar">
+      <div class="brand" id="pageTitle">Smoke</div>
+      <div class="date" id="todayDate">今天</div>
+    </header>
+
+    <main class="views">
+
+      <!-- ===== Smoke 主界面 ===== -->
+      <section class="view view-home active" id="view-home">
+        <div class="bg-doodles" aria-hidden="true">
+          <svg class="deco deco-dumbbell" viewBox="0 0 40 24"><rect x="4" y="9" width="32" height="6" rx="3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><rect x="0" y="0" width="7" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2.5"/><rect x="33" y="0" width="7" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>
+          <svg class="deco deco-kettlebell" viewBox="0 0 30 34"><path d="M8,12 Q8,4 15,4 Q22,4 22,12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="15" cy="22" r="11" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>
+          <svg class="deco deco-star" viewBox="0 0 32 32"><path d="M16,2 L20,12 L30,12 L22,18 L26,28 L16,22 L6,28 L10,18 L2,12 L12,12 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
+          <svg class="deco deco-muscle" viewBox="0 0 40 28"><path d="M6,18 Q2,14 6,10 Q14,4 26,8 Q36,12 36,18 Q36,24 26,24 Q14,26 6,22 Q2,20 6,18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14,12 Q20,10 26,14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg class="deco deco-sweat" viewBox="0 0 20 26"><path d="M10,2 Q16,8 16,16 Q16,24 10,24 Q4,24 4,16 Q4,8 10,2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="deco deco-shoe" viewBox="0 0 48 28"><path d="M3,21 Q3,13 14,13 L22,13 Q27,13 31,17 L45,17 Q47,17 47,21 L47,23 Q47,25 45,25 L5,25 Q3,25 3,23 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M15,13 L15,25 M31,17 L31,25" stroke="currentColor" stroke-width="2.5"/></svg>
+          <svg class="deco deco-barbell" viewBox="0 0 48 20"><rect x="6" y="8.5" width="36" height="3" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.5"/><rect x="2" y="2" width="6" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2.5"/><rect x="40" y="2" width="6" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>
+          <svg class="deco deco-flame" viewBox="0 0 24 30"><path d="M12,2 Q18,12 16,20 Q15,28 12,28 Q8,28 8,22 Q8,26 10,26 Q14,26 14,18 Q14,10 12,2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
+          <svg class="deco deco-bolt" viewBox="0 0 20 32"><path d="M12,2 L4,18 L10,18 L8,30 L16,14 L10,14 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
+          <svg class="deco deco-heart" viewBox="0 0 48 24"><path d="M2,12 L12,12 L16,4 L22,20 L28,12 L46,12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div class="limit-banner" id="limitBanner" hidden></div>
+
+        <div class="hero">
+          <div class="mascot-wrap" id="mascotWrap">
+            <img class="mascot-img" id="mascot" src="" alt="风格 mascot" />
+          </div>
+          <div class="hero-label">今日已抽</div>
+          <div class="hero-count" id="todayCount">0</div>
+          <div class="hero-unit">支</div>
+          <div class="hero-limit" id="heroLimit">上限 20 根</div>
+        </div>
+
+        <button class="tap-btn" id="tapBtn" aria-label="记录多抽一支">
+          <span class="tap-btn-ring"></span>
+          <svg class="tap-ico" viewBox="0 0 120 60" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="30" x2="98" y2="30"/><rect x="12" y="16" width="11" height="28" rx="4"/><rect x="97" y="16" width="11" height="28" rx="4"/></svg>
+          <span class="tap-btn-label">抽一根 记账上！</span>
+          <span class="tap-btn-sub">点我 +1</span>
+        </button>
+
+        <div class="quote-card" id="quoteCard">
+          <div class="quote-tag">今日充能</div>
+          <div class="quote-text" id="quoteText">加载中…</div>
+          <div class="quote-actions">
+            <button class="qa" id="likeBtn"><span class="qa-ico">♡</span><span class="qa-txt">赞</span></button>
+            <button class="qa" id="copyBtn"><span class="qa-ico">⧉</span><span class="qa-txt">复制</span></button>
+            <button class="qa" id="favBtn"><span class="qa-ico">☆</span><span class="qa-txt">收藏</span></button>
+          </div>
+        </div>
+
+        <div class="quick-stats" id="quickStats">
+          <div class="qstat"><span class="qnum" id="weekNum">0</span><span class="qlab">本周</span></div>
+          <div class="qstat"><span class="qnum" id="monthNum">0</span><span class="qlab">本月</span></div>
+        </div>
+      </section>
+
+      <!-- ===== 烟民记账本 ===== -->
+      <section class="view view-stats" id="view-stats">
+        <div class="bg-doodles" aria-hidden="true">
+          <svg class="deco deco-dumbbell" viewBox="0 0 40 24"><rect x="4" y="9" width="32" height="6" rx="3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><rect x="0" y="0" width="7" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2.5"/><rect x="33" y="0" width="7" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>
+          <svg class="deco deco-star" viewBox="0 0 32 32"><path d="M16,2 L20,12 L30,12 L22,18 L26,28 L16,22 L6,28 L10,18 L2,12 L12,12 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
+          <svg class="deco deco-sweat" viewBox="0 0 20 26"><path d="M10,2 Q16,8 16,16 Q16,24 10,24 Q4,24 4,16 Q4,8 10,2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="deco deco-bolt" viewBox="0 0 20 32"><path d="M12,2 L4,18 L10,18 L8,30 L16,14 L10,14 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
+          <svg class="deco deco-heart" viewBox="0 0 48 24"><path d="M2,12 L12,12 L16,4 L22,20 L28,12 L46,12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="deco deco-arm" viewBox="0 0 40 32"><path d="M3,22 Q1,11 12,11 Q19,11 19,17 L31,17 Q39,17 37,25 Q35,31 27,29" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="31" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>
+        </div>
+
+        <div class="seg" id="statsSeg">
+          <button class="seg-btn active" data-cycle="day">今日</button>
+          <button class="seg-btn" data-cycle="week">本周</button>
+          <button class="seg-btn" data-cycle="month">本月</button>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-big" id="statBig">0</div>
+          <div class="stat-big-lab" id="statBigLab">今日总支数</div>
+          <div class="stat-row">
+            <div><span id="statAvg">0</span><small>日均</small></div>
+            <div><span id="statPeak">0</span><small>单日峰值</small></div>
+            <div><span id="statLimit">20</span><small>上限</small></div>
+          </div>
+        </div>
+
+        <div class="cal-card">
+          <div class="cal-title" id="calTitle">日历</div>
+          <div class="cal-weekdays">
+            <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+        </div>
+      </section>
+
+      <!-- ===== 烟民的家 ===== -->
+      <section class="view view-me" id="view-me">
+        <div class="bg-doodles" aria-hidden="true">
+          <svg class="deco deco-dumbbell" viewBox="0 0 40 24"><rect x="4" y="9" width="32" height="6" rx="3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><rect x="0" y="0" width="7" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2.5"/><rect x="33" y="0" width="7" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>
+          <svg class="deco deco-kettlebell" viewBox="0 0 30 34"><path d="M8,12 Q8,4 15,4 Q22,4 22,12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="15" cy="22" r="11" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>
+          <svg class="deco deco-flame" viewBox="0 0 24 30"><path d="M12,2 Q18,12 16,20 Q15,28 12,28 Q8,28 8,22 Q8,26 10,26 Q14,26 14,18 Q14,10 12,2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
+          <svg class="deco deco-rope" viewBox="0 0 40 40"><path d="M6,9 Q20,-5 34,9" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M6,9 L6,17 M34,9 L34,17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="6" cy="7" r="2.4" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="34" cy="7" r="2.4" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>
+          <svg class="deco deco-bottle" viewBox="0 0 20 32"><rect x="6" y="0" width="8" height="4" rx="2" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M5,6 Q5,9 5,13 L5,28 Q5,32 10,32 Q15,32 15,28 L15,13 Q15,9 15,6 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div class="me-card">
+          <div class="me-title">界面风格 <small class="me-hint">一张图一种风格</small></div>
+          <div class="style-grid" id="styleGrid"></div>
+        </div>
+
+        <div class="me-card limit-set-card">
+          <div class="me-title">每日抽烟上限</div>
+          <div class="limit-set">
+            <input type="number" id="limitInput" min="1" max="99" value="20" inputmode="numeric" />
+            <span class="limit-unit">根 / 天</span>
+            <button class="me-btn small" id="limitSave">保存</button>
+          </div>
+          <div class="limit-tip" id="limitTip">达到上限界面会变红报警；差 2 根会提前提醒。</div>
+        </div>
+
+        <div class="me-card">
+          <div class="me-title">背景颜色 <input type="color" id="colorPicker" value="#f7e8d5"></div>
+          <div class="palette" id="palette">
+            <button class="color-swatch" style="--c:#f7e8d5" title="奶油白"></button>
+            <button class="color-swatch" style="--c:#fff5d7" title="暖杏"></button>
+            <button class="color-swatch" style="--c:#ffd6e0" title="樱花粉"></button>
+            <button class="color-swatch" style="--c:#c1e1c1" title="薄荷绿"></button>
+            <button class="color-swatch" style="--c:#a8d8ea" title="天空蓝"></button>
+            <button class="color-swatch" style="--c:#ffbe76" title="活力橙"></button>
+            <button class="color-swatch" style="--c:#f9ca24" title="柠檬黄"></button>
+            <button class="color-swatch" style="--c:#dfe6e9" title="浅灰"></button>
+            <button class="color-swatch dark" style="--c:#2d3436" title="岩灰"></button>
+            <button class="color-swatch dark" style="--c:#1a1a2e" title="深海军"></button>
+            <button class="color-swatch dark" style="--c:#16213e" title="深夜蓝"></button>
+            <button class="color-swatch dark" style="--c:#0f3460" title="深靛蓝"></button>
+            <button class="color-swatch dark" style="--c:#1b1c25" title="纯炭黑"></button>
+            <button class="color-swatch dark" style="--c:#1b4332" title="深森绿"></button>
+            <button class="color-swatch dark" style="--c:#4a1c40" title="暗莓紫"></button>
+            <button class="color-swatch dark" style="--c:#5d4037" title="深木棕"></button>
+            <button class="color-swatch dark" style="--c:#3e2723" title="咖啡棕"></button>
+            <button class="color-swatch dark" style="--c:#212121" title="墨黑"></button>
+          </div>
+        </div>
+
+        <div class="me-card howto">
+          <div class="me-title">放到手机桌面</div>
+          <ol class="howto-list">
+            <li>手机浏览器打开本页（同 Wi‑Fi 访问电脑地址，或已托管到网上）</li>
+            <li>点浏览器菜单 →「添加到主屏幕 / Add to Home Screen」</li>
+            <li>桌面出现图标，点开即用。震动 / 音效在真机才触发</li>
+          </ol>
+          <p class="howto-note">说明：纯网页可「加到主屏幕」当 App 用（全屏打开），但无法变成系统桌面那种固定小方块 Widget。若想要真·系统级小插件，需用原生安卓（Kotlin / Flutter）单独开发，工作量更大，需要的话我可以帮你做。</p>
+        </div>
+
+        <div class="me-card">
+          <div class="me-title">数据</div>
+          <button class="me-btn" id="exportBtn">导出备份 (JSON)</button>
+          <button class="me-btn danger" id="resetBtn">清空今日计数</button>
+        </div>
+
+        <div class="me-card">
+          <div class="me-title">收藏的励志语录 <span class="me-count" id="favCount">0</span></div>
+          <div class="fav-items" id="favItems"></div>
+        </div>
+
+        <div class="me-foot">练手作品 · 数据仅存本机</div>
+      </section>
+
+    </main>
+
+    <nav class="tabbar">
+      <button class="tab active" data-view="home"><span class="tab-ico">◉</span><span class="tab-txt">Smoke</span></button>
+      <button class="tab" data-view="stats"><span class="tab-ico">▦</span><span class="tab-txt">烟民记账本</span></button>
+      <button class="tab" data-view="me"><span class="tab-ico">✦</span><span class="tab-txt">烟民的家</span></button>
+    </nav>
+
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <!-- 红色报警覆盖层 -->
+  <div class="alarm-overlay" id="alarmOverlay" hidden>
+    <div class="alarm-inner">
+      <div class="alarm-emoji">🚫</div>
+      <div class="alarm-title">今日焦油量已达极限！</div>
+      <div class="alarm-sub" id="alarmSub"></div>
+      <button class="alarm-btn" id="alarmClose">我知道了</button>
+    </div>
+  </div>
+
+  <script src="js/quotes.js?v=5"></script>
+  <script src="js/app.js?v=5"></script>
+</body>
+</html>
